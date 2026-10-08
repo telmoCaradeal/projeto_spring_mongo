@@ -1,12 +1,13 @@
 package domain;
 
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Document
+@Document(collection = "usuario")
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
