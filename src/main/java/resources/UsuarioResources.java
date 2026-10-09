@@ -5,6 +5,7 @@ import domain.Usuario;
 import dto.UsuarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,17 +25,19 @@ public class UsuarioResources {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<UsuarioDTO>> findAll(){
-//Codigo para testar o EndPoint passando uma lista feita no hardcode
-//        List<Usuario> list = new ArrayList<>();
-//        Usuario maria = new Usuario("1001", "Maria Brown", "maria@gmail.com");
-//        Usuario alex = new Usuario("1002", "Alex Green", "alex@gmail.com");
-//        list.addAll(Arrays.asList(maria, alex));
-//        return ResponseEntity.ok().body(list);
 
         List<Usuario> listaUsuarios = usuarioService.findAll();
         List<UsuarioDTO> listaUsuariosDTO = listaUsuarios.stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listaUsuariosDTO);
 
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<UsuarioDTO> findById(@PathVariable String id){
+        Usuario usuarioId = usuarioService.findById(id);
+        return ResponseEntity.ok().body(new UsuarioDTO(usuarioId));
+
+    }
+
 
 }
