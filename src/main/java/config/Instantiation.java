@@ -17,7 +17,9 @@ public class Instantiation implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        usuarioRepository.deleteAll();//Limpa o banco de dados antes de inserir os novos registros
+        if (usuarioRepository.count() > 0) {
+            return;
+        }
 
         Usuario maria = new Usuario(null, "Maria Brown", "maria@gmail.com");
         Usuario alex = new Usuario(null, "Alex Green", "alex@gmail.com");

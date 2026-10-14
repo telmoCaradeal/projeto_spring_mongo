@@ -32,4 +32,11 @@ public class UsuarioService {
         return new Usuario(usuarioDTO.getId(), usuarioDTO.getNome(), usuarioDTO.getEmail());
     }
 
+    public String deleteUsuario(String id) {
+        Usuario usuario = userRepo.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Usuário não localizado para exclusão"));
+        userRepo.delete(usuario);
+        return "Usuário exluido com sucesso";
+    }
+
 }
