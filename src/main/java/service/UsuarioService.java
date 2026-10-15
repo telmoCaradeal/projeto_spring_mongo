@@ -39,4 +39,15 @@ public class UsuarioService {
         return "Usuário exluido com sucesso";
     }
 
+    public Usuario updateUser(Usuario obj){
+        Usuario newObj = findById(obj.getId());
+        updateDados(newObj, obj);
+        return userRepo.save(newObj);
+    }
+
+    public void updateDados(Usuario newObj, Usuario obj) {
+        newObj.setNome(obj.getNome());
+        newObj.setEmail(obj.getEmail());
+    }
+
 }
