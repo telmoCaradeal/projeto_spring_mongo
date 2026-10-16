@@ -34,10 +34,11 @@ public class UsuarioService {
 
     public String deleteUsuario(String id) {
         Usuario usuario = userRepo.findById(id)
-                .orElseThrow(() -> new ObjectNotFoundException("Usuário não localizado para exclusão"));
+                .orElseThrow(() -> new ObjectNotFoundException("Usuário não localizado para Exclusão"));
         userRepo.delete(usuario);
         return "Usuário exluido com sucesso";
     }
+
 
     public Usuario updateUser(Usuario obj){
         Usuario newObj = findById(obj.getId());
