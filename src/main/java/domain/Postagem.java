@@ -17,14 +17,19 @@ public class Postagem implements Serializable {
     private String titullo;
     private String conteudo;
 
+
+    private Usuario autor;
+
     public Postagem(){}
 
-    public Postagem(String id, Date data, String titullo, String conteudo) {
+    public Postagem(String id, Date data, String titullo, String conteudo, Usuario autor) {
         this.id = id;
         this.data = data;
         this.titullo = titullo;
         this.conteudo = conteudo;
+        this.autor = autor;
     }
+
 
     public String getId() {
         return id;
@@ -57,6 +62,15 @@ public class Postagem implements Serializable {
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
     }
+
+    public Usuario getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Usuario autor) {
+        this.autor = autor;
+    }
+
 
     @Override
     public boolean equals(Object o) {
