@@ -1,5 +1,6 @@
 package domain;
 
+import dto.AutorDTO;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
@@ -18,11 +19,11 @@ public class Postagem implements Serializable {
     private String conteudo;
 
 
-    private Usuario autor;
+    private AutorDTO autor;
 
     public Postagem(){}
 
-    public Postagem(String id, Date data, String titullo, String conteudo, Usuario autor) {
+    public Postagem(String id, Date data, String titullo, String conteudo, AutorDTO autor) {
         this.id = id;
         this.data = data;
         this.titullo = titullo;
@@ -63,11 +64,11 @@ public class Postagem implements Serializable {
         this.conteudo = conteudo;
     }
 
-    public Usuario getAutor() {
+    public AutorDTO getAutor() {
         return autor;
     }
 
-    public void setAutor(Usuario autor) {
+    public void setAutor(AutorDTO autor) {
         this.autor = autor;
     }
 

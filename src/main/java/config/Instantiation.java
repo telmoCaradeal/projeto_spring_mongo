@@ -2,6 +2,7 @@ package config;
 
 import domain.Postagem;
 import domain.Usuario;
+import dto.AutorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -27,9 +28,9 @@ public class Instantiation implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        if (usuarioRepository.count() > 0) {
-            return;
-        }
+//        if (usuarioRepository.count() > 0) {
+//            return;
+//        }
 
         //Limpar a base de dados toda vez que executar essa classe
         usuarioRepository.deleteAll();
@@ -44,9 +45,12 @@ public class Instantiation implements CommandLineRunner {
         Usuario bob = new Usuario(null, "Bob Grey", "bob@gmail.com");
         usuarioRepository.saveAll(Arrays.asList(maria, alex, bob));
 
-        Postagem post1 = new Postagem(null, sdf.parse("21/03/2026"), "Partiu Viagem", "Vou viajar para São Paulo. Abraços!", alex);
-        Postagem post2 = new Postagem(null, sdf.parse("23/03/2026"), "Bom dia", "Acordei feliz hoje!", maria);
+        Postagem post1 = new Postagem(null, sdf.parse("21/03/2026"), "Partiu Viagem", "Vou viajar para São Paulo. Abraços!", new AutorDTO(alex));
+        Postagem post2 = new Postagem(null, sdf.parse("23/03/2026"), "Bom dia", "Acordei feliz hoje!", new AutorDTO(maria));
         postagemRepository.saveAll(Arrays.asList(post1, post2));
+
+        maria.getPosts().addAll(Arrays.asList(post1, post2));
+        usuarioRepository.save(maria);
 
     }
 }
