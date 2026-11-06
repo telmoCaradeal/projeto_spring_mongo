@@ -22,7 +22,7 @@ public class Usuario implements Serializable {
 
 
     @DBRef(lazy = true) //lazy = true -> Define que não sera carregada a lista de forma automatica
-    private List<Postagem> posts = new ArrayList<>();
+    private List<Post> posts = new ArrayList<>();
 
     public  Usuario() {
     }
@@ -57,11 +57,11 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
-    public List<Postagem> getPosts() {
+    public List<Post> getPosts() {
         return posts;
     }
 
-    public void setPosts(List<Postagem> posts) {
+    public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
 

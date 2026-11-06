@@ -1,6 +1,7 @@
 package resources;
 
 
+import domain.Post;
 import domain.Usuario;
 import dto.UsuarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import service.UsuarioService;
 
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,6 +58,14 @@ public class UsuarioResources {
         obj.setId(id);
         usuarioService.updateUser(obj);
         return ResponseEntity.ok("Usuário alterado com sucesso.");
+
+    }
+
+    //EndPoint para consultar Post do usuario
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPost(@PathVariable String id){
+        Usuario obj = usuarioService.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
 
     }
 

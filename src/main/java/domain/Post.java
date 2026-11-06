@@ -1,13 +1,16 @@
 package domain;
 
 import dto.AutorDTO;
+import dto.ComentarioDTO;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
-public class Postagem implements Serializable {
+public class Post implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -15,18 +18,18 @@ public class Postagem implements Serializable {
     @Id
     private String id;
     private Date data;
-    private String titullo;
+    private String titulo;
     private String conteudo;
 
-
     private AutorDTO autor;
+    private List<ComentarioDTO> comentarios = new ArrayList<>();
 
-    public Postagem(){}
+    public Post(){}
 
-    public Postagem(String id, Date data, String titullo, String conteudo, AutorDTO autor) {
+    public Post(String id, Date data, String titulo, String conteudo, AutorDTO autor) {
         this.id = id;
         this.data = data;
-        this.titullo = titullo;
+        this.titulo = titulo;
         this.conteudo = conteudo;
         this.autor = autor;
     }
@@ -48,12 +51,12 @@ public class Postagem implements Serializable {
         this.data = data;
     }
 
-    public String getTitullo() {
-        return titullo;
+    public String gettitulo() {
+        return titulo;
     }
 
-    public void setTitullo(String titullo) {
-        this.titullo = titullo;
+    public void settitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getConteudo() {
@@ -72,12 +75,20 @@ public class Postagem implements Serializable {
         this.autor = autor;
     }
 
+    public List<ComentarioDTO> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioDTO> comentarios) {
+        this.comentarios = comentarios;
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Postagem postagem = (Postagem) o;
-        return Objects.equals(id, postagem.id);
+        Post post = (Post) o;
+        return Objects.equals(id, post.id);
     }
 
     @Override
